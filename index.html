@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>렛츠에 오신것을 환영합니다.</title>
+    <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" text="text/css" href="/static/css/bootstrap.min.css">
+  <style>
+  header {background-color: #E4DCCF;}
+    #log {float: right; font-size: 12px; color: white; text-decoration: none; margin-top: 10px; margin-right: 300px;}
+    #log li {display: inline;}
+    #log hr {display: inline; margin-right: 3px;}
+    #log a:visited {text-decoration: none; color: black;}
+    #log a:link {text-decoration: none; color: black;}
+
+
+    *{padding:0;margin:0}
+    li{list-style:none}
+    a{text-decoration:none;font-size:14px}
+
+    nav { width: 100%; display: flex; justify-content: center; position: relative; background: #ffffff;}
+    #main-menu > li { float: left; position: relative;}
+    #main-menu > li > a { font-size: 0.85rem; color: black; text-align: center; text-decoration: none; letter-spacing: 0.05em; display: block; padding: 14px 36px; border-right: 1px solid rgba(0,0,0,0.15); text-shadow: 1px 1px 1px rgba(0,0,0,0.2);}
+    #main-menu > li:nth-child(1) > a {border-left: 1px solid rgba(0,0,0,0.15);}
+
+    #sub-menu {position: absolute;  opacity: 0; visibility: hidden; transition: all 0.15s ease-in; background: #ffffff;}
+
+    #sub-menu > li {padding: 16px 28px; border: 1px solid rgba(0,0,0,0.15);}
+
+    #sub-menu > li >  a {color: black; text-decoration: none; }
+
+    #main-menu > li:hover #sub-menu { opacity: 1; visibility: visible;}
+
+    #sub-menu > li >  a:hover {text-decoration: underline;}
+
+    .search1 {text-align: center; margin-left: 375px;}
+    img {width: 200px;}
+    .inner {position: relative; width: 600px; height: 40px; margin: 20px auto; border: 1px solid #bdc1c6; border-radius: 20px; margin-bottom: 30px;}
+
+    input {width: 100%; height: 100%; border-color: #bdc1c6; border: 1px solid #bdc1c6; border-radius: 20px; font-size: 16px; outline: none; }
+    #siq {font-size: 12px;}
+    #tq {color: red;}
+    a:visited{text-decoration: none; color: rgb(0, 0, 0);}
+    a:link{text-decoration: none; color: rgb(0, 0, 0);}
+
+    i:hover {cursor: pointer;}
+    .searching {position: absolute; right: 10px; top: 20%;}
+    .fa-keyboard {margin-right: 10px;}
+
+	/* 브라우저 마진과 패딩 리셋 */
+	* {margin:0;padding:0;}
+
+
+	/* INPUT 가리기 */
+	.section input[id*="slide"] {display:none;}
+
+	/* 슬라이드 영역 - max-width 크기를 조절해주면 됩니다*/
+	.section .slidewrap { margin:0 auto;overflow:hidden;}
+	.section .slidelist {white-space:nowrap;font-size:0;}
+	.section .slidelist > li {display:inline-block;vertical-align:middle;width:100%;transition:all .5s;}
+	.section .slidelist > li > a {display:block;position:relative;overflow:hidden;} /* 화살표 화면 밖으로 나가면 안보이도록 OVERFLOW로 가림처리 */
+	.section .slidelist > li > a img {width:100%;}
+
+	/* 좌우로 넘기는 LABEL버튼에 대한 스타일 */
+	.section .slidelist label {position:absolute;z-index:1;top:50%;transform:translateY(-50%);padding:50px;cursor:pointer;}
+	.section .slidelist .left {left:-300px;background:url('./img/left.png') center center / 100% no-repeat;} /* LEFT -300px로 화살표가 안보이게 되어있도록 준 스타일 */
+	.section .slidelist .right {right:-300px;background:url('./img/right.png') center center / 100% no-repeat;} /* RIGHT -300px로 화살표가 안보이게 되어있도록 준 스타일 */
+
+	/* INPUT이 체크되면 변화값이 li까지 전달되는 스타일 */
+	.section input[id="slide01"]:checked ~ .slidewrap .slidelist > li {transform:translateX(0%);}
+	.section input[id="slide02"]:checked ~ .slidewrap .slidelist > li {transform:translateX(-100%);}
+	.section input[id="slide03"]:checked ~ .slidewrap .slidelist > li {transform:translateX(-200%);}
+
+	/* INPUT이 체크되면 변화값이 LEFT,RIGHT에 전달되는 스타일 */
+	.section input[id="slide01"]:checked ~ .slidewrap li:nth-child(1) .left {left:30px;transition:all .35s ease .5s;} /* 1번 INPUT이 체크되면 1번 슬라이드의 왼쪽 화살표의 LEFT값이 변하면서 나타나도록 준 스타일 */
+	.section input[id="slide01"]:checked ~ .slidewrap li:nth-child(1) .right {right:30px;transition:all .35s ease .5s;} /* 1번 INPUT이 체크되면 1번 슬라이드의 오른쪽 화살표의 LEFT값이 변하면서 나타나도록 준 스타일 */
+	.section input[id="slide02"]:checked ~ .slidewrap li:nth-child(2) .left {left:30px;transition:all .35s ease .5s;} /* 2번 INPUT이 체크되면 1번 슬라이드의 왼쪽 화살표의 LEFT값이 변하면서 나타나도록 준 스타일 */
+	.section input[id="slide02"]:checked ~ .slidewrap li:nth-child(2) .right {right:30px;transition:all .35s ease .5s;} /* 2번 INPUT이 체크되면 1번 슬라이드의 오른쪽 화살표의 LEFT값이 변하면서 나타나도록 준 스타일 */
+	.section input[id="slide03"]:checked ~ .slidewrap li:nth-child(3) .left {left:30px;transition:all .35s ease .5s;} /* 3번 INPUT이 체크되면 1번 슬라이드의 왼쪽 화살표의 LEFT값이 변하면서 나타나도록 준 스타일 */
+	.section input[id="slide03"]:checked ~ .slidewrap li:nth-child(3) .right {right:30px;transition:all .35s ease .5s;} /* 3번 INPUT이 체크되면 1번 슬라이드의 오른쪽 화살표의 LEFT값이 변하면서 나타나도록 준 스타일 */
+  /* footer */
+  #gg1 {float: right; color:white ; margin: 50px 30px 0 0;}
+  #gg1 li{list-style-type: none;}
+  footer {background-color: #5d5b5a; width: 100%; height: 150px;}
+
+  </style>
+    <script src="https://kit.fontawesome.com/b3c3d4a375.js" crossorigin="anonymous"></script>
+</head>
+ <body class="d-flex flex-column min-vh-100">
+    <header>
+
+     <div id="log">
+      <ul>
+          <li><a href="login.html">로그인</a></li>
+          <hr>
+          <li><a href="join.html">회원가입</a></li>
+      </ul>
+     </div>
+        <div class="search1">
+            <a href="index.html">
+            <img src="image/logo.png">
+            </a>
+        </div>
+        <div class="inner">
+        <input type="search">
+            <div class="searching">
+                <i class="fas fa-search"></i>
+            </div>
+    </header>
+   <section>
+    <nav role="navigation" style="z-index:2">
+    <ul id="main-menu">
+        <li><a href="#">카테고리</a>
+        <ul id="sub-menu">
+                  <li><a href="pibu.html" aria-label="subemnu">피부&모질</a></li>
+                  <li><a href="sohwa.html" aria-label="subemnu">면역력&소화</a></li>
+                  <li><a href="str.html" aria-label="subemnu">체력증강</a></li>
+                  <li><a href="old.html" aria-label="subemnu">노견용</a></li>
+                  <li><a href="fat.html" aria-label="subemnu">비만견용</a></li>
+                  <li><a href="dangnyo.html" aria-label="subemnu">당뇨견용</a></li>
+        </ul>
+        <li><a href="rank.html">랭킹</a></li>
+        <li><a href="event.html">이벤트</a></li>
+        <li><a href="notice.html">공지사항</a></li>
+        <li><a href="jbgn.html">장바구니</a></li>
+        <li><a href="comu.html">커뮤니티</a></li>
+    </ul>
+    </nav>
+       <div class="section">
+		<input type="radio" name="slide" id="slide01" checked="">
+		<input type="radio" name="slide" id="slide02">
+		<input type="radio" name="slide" id="slide03">
+
+		<div class="slidewrap" style="z-index:1">
+			<ul class="slidelist">
+				<li>
+					<a>
+						<label for="slide03" class="left"></label>
+						<img src="image/box.png" style=" height: 400px;">
+						<label for="slide02" class="right"></label>
+					</a>
+				</li>
+				<li>
+					<a>
+						<label for="slide01" class="left"></label>
+						<img src="image/배너2.jpg" style="  height: 400px;">
+						<label for="slide03" class="right"></label>
+					</a>
+				</li>
+				<li>
+					<a>
+						<label for="slide02" class="left"></label>
+						<img src="image/sleep.png" style=" height: 400px;">
+						<label for="slide01" class="right"></label>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+  <div class="container">
+    <div class="row my-5">
+        <h3>BEST</h3><hr>
+    <div class="col-3">
+        <a href><img src="https://shop-phinf.pstatic.net/20200828_247/1598593355353N86Oq_JPEG/35953189760597313_902142158.jpg?type=f296_296"><br></a>
+        <span id="siq"><a href>닭 생식 (100g)</a><br>
+        
+        <span id="tq">★</span> 4.9 (51,062)
+        </span>
+    </div>
+    <div class="col-3">
+        <a href><img src="https://shop-phinf.pstatic.net/20200828_85/1598593535729idIRO_JPEG/35954274221109084_243896343.jpg?type=f296_296"><br></a>
+        <span id="siq"><a href>램 생식 (100g)</a><br>
+        
+        <span id="tq">★</span> 4.9 (50,029)
+        </span>
+    </div>
+    <div class="col-3">
+         <a href><img src="image/begun.jpg" style="width: 200px; height: 200px;"><br></a>
+        <span id="siq"><a href>비건 생식 (100g)</a><br>
+        
+        <span id="tq">★</span> 4.9 (42,125)
+        </span>
+    </div>
+    <div class="col-3">
+        <a href><img src="https://shop-phinf.pstatic.net/20200828_247/1598593355353N86Oq_JPEG/35953189760597313_902142158.jpg?type=f296_296"><br></a>
+        <span id="siq"><a href>닭 생식 (1KG)</a><br>
+        
+        <span id="tq">★</span> 4.9 (34,593)
+        </span>
+    </div>
+    </div>
+</div>
+<div class="container">
+  <div class="row my-5">
+      <h3>이런 상품은 어떠신가요?</h3><hr>
+  <div class="col-3">
+      <a href><img src="https://shop-phinf.pstatic.net/20200828_148/1598593192257Kz3IR_JPEG/35953930777296209_1468316886.jpg?type=f296_296"><br></a>
+      <span id="siq"><a href>비프 생식 (100g)</a><br>
+      10,500원<br>
+      <span id="tq">★</span> 4.9 (51,062)
+      </span>
+  </div>
+  <div class="col-3">
+      <a href><img src="image/turkey.jpg" style="width: 200px; height: 200px;"><br></a>
+      <span id="siq"><a href>칠면조 생식 (100g)</a><br>
+      10,500원<br>
+      <span id="tq">★</span> 4.9 (51,062)
+      </span>
+  </div>
+  <div class="col-3">
+      <a href><img src="image/rabbit.jfif" style="width: 200px; height: 200px;"><br></a>
+      <span id="siq"><a href>토끼 생식 (100g)</a><br>
+      10,500원<br>
+      <span id="tq">★</span> 4.9 (51,062)
+      </span>
+  </div>
+  <div class="col-3">
+      <a href><img src="https://shop-phinf.pstatic.net/20200828_145/15985926593898zw9l_JPEG/35954992884947018_2000629298.jpg?type=f296_296"><br></a>
+      <span id="siq"><a href>오리 생식 (100g)</a><br>
+      10,500원<br>
+      <span id="tq">★</span> 4.9 (51,062)
+      </span>
+  </div>
+  </div>
+</div>
+   </section> 
+  <!-- Footer-->
+   <footer class="mt-auto">
+       <div id="gg1">
+           <ul>
+                      <li>주소: 세종시 연서면</li>
+                      <li>TEL:044-123-1234 Email : lets@naver.com</li>
+                      <li>COPYRIGHT (C) LETS ALL RIGHTS RESERVED</li
+     </ul>
+     </div>
+   </footer>
+  </body>
+</html>
